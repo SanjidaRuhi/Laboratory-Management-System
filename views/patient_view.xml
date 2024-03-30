@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_patient_details" model="ir.actions.act_window">
+        <field name="name">Patient Details</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">patient.details</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- Tree view -->
+    <record id="view_patient_details_tree" model="ir.ui.view">
+        <field name="name">patient.details.tree</field>
+        <field name="model">patient.details</field>
+        <field name="arch" type="xml">
+            <tree string="Patient Details">
+                <field name="name"/>
+                <field name="age"/>
+                <field name="gender"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view -->
+    <record id="view_patient_details_form" model="ir.ui.view">
+        <field name="name">patient.details.form</field>
+        <field name="model">patient.details</field>
+        <field name="arch" type="xml">
+            <form string="Patient Details">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="age"/>
+                        <field name="id"/>
+                        <field name="gender"/>
+                        <field name="priority"/>
+                        <field name="status"/>
+                        <field name="email"/>
+                        <field name="contact"/>
+                        <field name="address"/>
+                       <field name="appointment"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+
+    <menuitem id="menu_patient"
+              name="Patient"
+              sequence="10"/>
+
+    <menuitem id="menu_patient_details"
+              name="Patient Details"
+              parent="menu_patient"
+              action="action_patient_details"/>
+
+</odoo>

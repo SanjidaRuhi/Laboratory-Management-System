@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_appointment_details" model="ir.actions.act_window">
+        <field name="name">Appointment Details</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">appointment.details</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <record id="view_appointment_details_tree" model="ir.ui.view">
+        <field name="name">appointment.details.tree</field>
+        <field name="model">appointment.details</field>
+        <field name="arch" type="xml">
+            <tree string="Appointment Details">
+                <field name="patient"/>
+                <field name="doctor"/>
+                <field name="appointment_id"/>
+                <field name="appointment_date"/>
+                <field name="appointment_time"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_appointment_details_form" model="ir.ui.view">
+        <field name="name">appointment.details.form</field>
+        <field name="model">appointment.details</field>
+        <field name="arch" type="xml">
+            <form string="Appointment Details">
+                <sheet>
+                    <group>
+                        <field name="patient"/>
+                        <field name="doctor"/>
+                        <field name="email"/>
+                        <field name="appointment_id"/>
+                        <field name="appointment_date"/>
+                        <field name="appointment_time"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <menuitem id="menu_appointment"
+              name="Appointment"
+              sequence="10"/>
+
+
+    <menuitem id="menu_appointment_details"
+              name="Appointment Details"
+              parent="menu_appointment"
+              sequence="10"
+              action="action_appointment_details"/>
+
+
+</odoo>

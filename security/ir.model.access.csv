@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_patient_details,manage_patient_details,model_patient_details,,1,1,1,1
+access_appointment_details,manage_appointment_details,model_appointment_details,,1,1,1,1
+

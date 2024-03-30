@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_doctor_details" model="ir.actions.act_window">
+        <field name="name">Doctor Details</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">doctor.details</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- Tree view for doctor details -->
+    <record id="view_doctor_details_tree" model="ir.ui.view">
+        <field name="name">doctor.details.tree</field>
+        <field name="model">doctor.details</field>
+        <field name="arch" type="xml">
+            <tree string="Doctor Details">
+                <field name="name"/>
+                <field name="license_id"/>
+                <field name="specialization"/>
+                <field name="experience"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view for doctor details -->
+    <record id="view_doctor_details_form" model="ir.ui.view">
+        <field name="name">doctor.details.form</field>
+        <field name="model">doctor.details</field>
+        <field name="arch" type="xml">
+            <form string="Doctor Details">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="id"/>
+                        <field name="license_id"/>
+                        <field name="contact"/>
+                        <field name="clinic_location"/>
+                        <field name="active_days"/>
+                        <field name="specialization"/>
+                        <field name="certification"/>
+                        <field name="experience"/>
+                        <field name="consultation_fee"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="menu_doctor"
+              name="Doctor"
+              sequence="10"
+    />
+
+    <menuitem id="menu_doctor_details"
+              name="Doctor Details"
+              parent="menu_doctor"
+              sequence="10"
+              action="action_doctor_details"
+    />
+
+</odoo>
