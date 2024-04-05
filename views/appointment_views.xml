@@ -16,7 +16,7 @@
             <tree string="Appointment Details">
                 <field name="patient"/>
                 <field name="doctor"/>
-                <field name="appointment_id"/>
+                <field name="id"/>
                 <field name="appointment_date"/>
                 <field name="appointment_time"/>
             </tree>
@@ -33,7 +33,7 @@
                         <field name="patient"/>
                         <field name="doctor"/>
                         <field name="email"/>
-                        <field name="appointment_id"/>
+                        <field name="id"/>
                         <field name="appointment_date"/>
                         <field name="appointment_time"/>
                     </group>
@@ -45,6 +45,7 @@
 
     <menuitem id="menu_appointment"
               name="Appointment"
+              parent="lab.main_menu"
               sequence="10"/>
 
 

@@ -2,7 +2,7 @@ from odoo import fields, models, api
 
 class Pathologist(models.Model):
     _name = 'pathologist.activities'
-    _rec_name = 'pathologist_activities'
+    _rec_name = 'name'
     _description = 'This model describe the Pathologist tasks'
 
     name = fields.Char(string="Name", required=True)

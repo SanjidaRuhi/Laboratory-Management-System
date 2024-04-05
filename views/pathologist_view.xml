@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_pathologist_activities" model="ir.actions.act_window">
+        <field name="name">Pathologist Activities</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pathologist.activities</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- Tree view for pathologist activities -->
+    <record id="view_pathologist_activities_tree" model="ir.ui.view">
+        <field name="name">pathologist.activities.tree</field>
+        <field name="model">pathologist.activities</field>
+        <field name="arch" type="xml">
+            <tree string="Pathologist Activities">
+                <field name="name"/>
+                <field name="specialization"/>
+                <field name="experience"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view for pathologist activities -->
+    <record id="view_pathologist_activities_form" model="ir.ui.view">
+        <field name="name">pathologist.activities.form</field>
+        <field name="model">pathologist.activities</field>
+        <field name="arch" type="xml">
+            <form string="Pathologist Activities">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="id"/>
+                        <field name="contact"/>
+                        <field name="address"/>
+                        <field name="specialization"/>
+                        <field name="certification"/>
+                        <field name="experience"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <menuitem id="menu_pathologist"
+              name="Pathologist"
+              parent="lab.main_menu"
+              sequence="10"/>
+
+    <menuitem id="menu_pathologist_activities"
+              name="Pathologist Activities"
+              parent="menu_pathologist"
+              action="action_pathologist_activities"
+              sequence="10"/>
+
+
+
+</odoo>

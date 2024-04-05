@@ -8,6 +8,6 @@ class Appointment(models.Model):
     patient = fields.Many2one('patient.details', string='Patient details')
     doctor = fields.Many2one('doctor.details', string='Doctor details')
     email = fields.Char(related='patient.email')
-    appointment_id = fields.Integer(string="Appointment Id", required=True)
+    id = fields.Integer(string="Appointment Id", required=True)
     appointment_date = fields.Date(string="Date of Appointment", required=True)
     appointment_time = fields.Datetime(string="Time", required=True)

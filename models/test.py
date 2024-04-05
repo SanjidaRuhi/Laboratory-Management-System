@@ -2,7 +2,7 @@ from odoo import fields, models, api
 
 class Test(models.Model):
     _name = 'test.details'
-    _rec_name = 'test_details'
+    _rec_name = 'test_name'
     _description = 'This model describe the descriptions of the test'
 
     test_name = fields.Char(string="Test Name", required=True)
@@ -25,29 +25,11 @@ class Test(models.Model):
     ], required=True)
     units = fields.Text(string='Units')
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     start_date = fields.Date(string='Start date', default= fields.Date.context_today)
     end_date_time = fields.Datetime(string='End date time', default= fields.Datetime.now)
-    email = fields.Char(related='model.email')
-    gender = fields.Selection(related='model.gender')
     html_field = fields.Html(string = 'HTML Field')
+    pathologist = fields.Many2one('pathologist.activities', string='Pathologist')
 
-    @api.onchange('model')   #this is called decoretor
-    def on_change_new_model(self):
-        self.description = self.model.description
 
 
 

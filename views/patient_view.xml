@@ -40,7 +40,6 @@
                         <field name="email"/>
                         <field name="contact"/>
                         <field name="address"/>
-                       <field name="appointment"/>
                     </group>
                 </sheet>
             </form>
@@ -49,9 +48,14 @@
 
 
 
+    <menuitem id="main_menu"
+              name="Laboratory"
+              sequence="10"/>
+
 
     <menuitem id="menu_patient"
               name="Patient"
+              parent="main_menu"
               sequence="10"/>
 
     <menuitem id="menu_patient_details"

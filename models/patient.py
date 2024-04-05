@@ -34,7 +34,6 @@ class Patient(models.Model):
     email = fields.Char(string="Email", required=True, default='someone@gmail.com')
     contact = fields.Char(string="Contact", required=True, default='01xxxxxxxxx')
     address = fields.Text(string="Address", required=True)
-    appointment = fields.Many2one('appointment.details', string='Appointment details')
 
 
 

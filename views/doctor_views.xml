@@ -47,8 +47,10 @@
         </field>
     </record>
 
+
     <menuitem id="menu_doctor"
               name="Doctor"
+              parent="lab.main_menu"
               sequence="10"
     />
 

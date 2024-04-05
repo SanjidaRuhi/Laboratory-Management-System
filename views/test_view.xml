@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_test_details" model="ir.actions.act_window">
+        <field name="name">Test Details</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">test.details</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- Tree view for test details -->
+    <record id="view_test_details_tree" model="ir.ui.view">
+        <field name="name">test.details.tree</field>
+        <field name="model">test.details</field>
+        <field name="arch" type="xml">
+            <tree string="Test Details">
+                <field name="test_name"/>
+                <field name="test_id"/>
+                <field name="cost"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view for test details -->
+    <record id="view_test_details_form" model="ir.ui.view">
+        <field name="name">test.details.form</field>
+        <field name="model">test.details</field>
+        <field name="arch" type="xml">
+            <form string="Test Details">
+                <sheet>
+                    <group>
+                        <field name="test_name"/>
+                        <field name="test_id"/>
+                        <field name="cost"/>
+                        <field name="description"/>
+                        <field name="preparation"/>
+                        <field name="testCategory"/>
+                        <field name="units"/>
+                        <field name="start_date"/>
+                        <field name="end_date_time"/>
+                        <field name="pathologist"/>
+                        <field name="html_field"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <menuitem id="menu_test"
+              name="Test"
+              parent="lab.main_menu"
+              sequence="10"/>
+
+
+    <menuitem id="menu_test_details"
+              name="Test Details"
+              parent="menu_test"
+              action="action_test_details"
+              sequence="10"/>
+
+
+</odoo>

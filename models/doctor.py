@@ -2,7 +2,7 @@ from odoo import fields, models, api
 
 class Doctor(models.Model):
     _name = 'doctor.details'
-    _rec_name = 'doctor_details'
+    _rec_name = 'name'
     _description = 'This model describe about doctor'
 
     name = fields.Char(string="Name", required=True)

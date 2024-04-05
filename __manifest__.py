@@ -25,6 +25,8 @@
         'views/patient_view.xml',
         'views/appointment_views.xml',
         'views/doctor_views.xml',
+        'views/pathologist_view.xml',
+        'views/test_view.xml',
     ],
 
 }
