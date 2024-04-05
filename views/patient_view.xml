@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
     <record id="action_patient_details" model="ir.actions.act_window">
         <field name="name">Patient Details</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">patient.details</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,search</field>
     </record>
-
 
     <!-- Tree view -->
     <record id="view_patient_details_tree" model="ir.ui.view">
@@ -46,21 +44,41 @@
         </field>
     </record>
 
+    <record id="search_view" model="ir.ui.view">
+        <field name="name">patient.view.search</field>
+        <field name="model">patient.details</field>
+        <field name="arch" type="xml">
+            <search string="Patient Information">
+                <field name="name" filter_domain="['|', '|',
+                    ('name', 'ilike', self),
+                    ('id', 'ilike', self),
+                    ('email', 'ilike', self),
+                ]"/>
+                <field name="age"/>
+                <field name="gender"/>
+                <field name="email"/>
+                <field name="status"/>
+                <filter name="gender_filter_f" string="Female" domain="[('gender', '=', 'female')]"/>
+                <filter name="gender_filter_m" string="Male" domain="[('gender', '=', 'male')]"/>
+                <filter name="priority_filter" string="Emergency" domain="[('priority', '=', '2')]"/>
+
+                <group expand="0" string="Group By">
+                    <filter name="gender_group_by" string="gender" context="{'group_by':'gender'}"/>
+                </group>
 
 
-    <menuitem id="main_menu"
-              name="Laboratory"
-              sequence="10"/>
 
+                <searchpanel>
+                    <field name="gender" enable_counters="1"/>
+                    <field name="status"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
 
-    <menuitem id="menu_patient"
-              name="Patient"
-              parent="main_menu"
-              sequence="10"/>
+    <menuitem id="main_menu" name="Laboratory" sequence="10"/>
 
-    <menuitem id="menu_patient_details"
-              name="Patient Details"
-              parent="menu_patient"
-              action="action_patient_details"/>
+    <menuitem id="menu_patient" name="Patient" parent="main_menu" sequence="10"/>
 
+    <menuitem id="menu_patient_details" name="Patient Details" parent="menu_patient" action="action_patient_details"/>
 </odoo>
