@@ -11,3 +11,5 @@ class Appointment(models.Model):
     id = fields.Integer(string="Appointment Id", required=True)
     appointment_date = fields.Date(string="Date of Appointment", required=True)
     appointment_time = fields.Datetime(string="Time", required=True)
+
+

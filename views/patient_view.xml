@@ -5,6 +5,12 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">patient.details</field>
         <field name="view_mode">tree,form,search</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling face">
+                Create Your first patient!
+            </p>
+        </field>
+
     </record>
 
     <!-- Tree view -->
@@ -12,37 +18,127 @@
         <field name="name">patient.details.tree</field>
         <field name="model">patient.details</field>
         <field name="arch" type="xml">
-            <tree string="Patient Details">
+            <tree string="Patient Details" decoration-success="status == 'appointed'">
                 <field name="name"/>
-                <field name="age"/>
-                <field name="gender"/>
-                <field name="status"/>
+                <field name="age" optional="show"/>
+                <field name="gender" optional="hide"/>
+               <!-- <field name="activity_ids" widget="list_activity"/>-->
+                <field name="status"
+                       decoration-success="status in ('appointed', 'checkup', 'admitted', 'released')"
+                       decoration-info="status in ('ot', 'icu')"
+                       decoration-danger="status == 'emergency'"
+                       decoration-warning="status == 'on_test'"
+                       widget="badge"
+                       optional="show"
+                />
+                <!--<field name="doctor_id" widget="many2one_avatar_user"/>-->
+
             </tree>
         </field>
     </record>
 
-    <!-- Form view -->
+    <!--Form view -->
     <record id="view_patient_details_form" model="ir.ui.view">
-        <field name="name">patient.details.form</field>
-        <field name="model">patient.details</field>
-        <field name="arch" type="xml">
-            <form string="Patient Details">
-                <sheet>
+    <field name="name">patient.details.form</field>
+    <field name="model">patient.details</field>
+    <field name="arch" type="xml">
+        <form string="Patient Details" delete = '0' create = '1' edit = '1'>
+            <sheet>
+                <div>
+                    <h3>
+                        <field name="priority" widget="priority"/>
+                    </h3>
+                </div>
+
+                <group>
                     <group>
                         <field name="name"/>
                         <field name="age"/>
                         <field name="id"/>
                         <field name="gender"/>
                         <field name="priority"/>
+                        <!--<field name="doctor_id"/>-->
+
+                    <button type="object"
+                            name="object_button"
+                            string="Object Button"
+                            help="on clicking this, a msg will be printed in the log"
+                            confirm="Are you sure to execute the python code? "
+                            class="oe_highlight"/>
+                        <!--two type button, object and action type. class="oe_highlight" will add purple color default.
+                     the object buttion will search for an active funtion in in python file -->
+
+                    </group>
+                    <group>
                         <field name="status"/>
                         <field name="email"/>
                         <field name="contact"/>
                         <field name="address"/>
+                        <field name="active"/>
+                        <button name="%(lab.action_patient_details)d"
+                            type="action"
+                            string="Action Button"
+                            help="on clicking this, page will be redirection to the patient details menu"
+
+                            confirm="Are you sure to open the patient details action? "
+                            class="oe_highlight"/>
+                        <!--%(lab.action_patient_details)d this is the syntex for action button name. it will contain module name
+                     then dot and then the action name of record
+                     when the action button will be clicked, it will search for that action
+                     if we click the action button it will redireactb to action details menu-->
                     </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
+                </group>
+            </sheet>
+            <!--
+            <div class="oe_chatter">
+                <field name="message_follower_ids" groups="base.group_user"/>
+                <field name="activity_ids"/>
+                <field name="message_ids"/>
+
+            </div>
+            -->
+        </form>
+    </field>
+</record>
+
+<!--    <record id="view_patient_details_form" model="ir.ui.view">-->
+<!--        <field name="name">patient.details.form</field>-->
+<!--        <field name="model">patient.details</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form string="Patient Details">-->
+<!--                <sheet>-->
+<!--                    <div>-->
+<!--                        <h3>-->
+<!--                            <field name="priority"-->
+<!--                                   widget="priority"/>-->
+<!--                        </h3>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                        <button type="object" name="action_appointment_button" string="View Appointment Details" />-->
+<!--                    </div>-->
+<!--                    <group>-->
+<!--                        <group>-->
+<!--                            <field name="name"/>-->
+<!--                            <field name="age"/>-->
+<!--                            <field name="id"/>-->
+<!--                            <field name="gender"/>-->
+<!--                            <field name="priority"/>-->
+<!--                        </group>-->
+<!--                        <group>-->
+<!--                            <field name="status"/>-->
+<!--                            <field name="email"/>-->
+<!--                            <field name="contact"/>-->
+<!--                            <field name="address"/>-->
+<!--                            <field name="active"/>-->
+<!--                            &lt;!&ndash; Clicking on this button, it will search for a function which we will define on the appointment.py file&ndash;&gt;-->
+
+<!--                        </group>-->
+
+<!--                    </group>-->
+<!--                </sheet>-->
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
 
     <record id="search_view" model="ir.ui.view">
         <field name="name">patient.view.search</field>
@@ -61,11 +157,12 @@
                 <filter name="gender_filter_f" string="Female" domain="[('gender', '=', 'female')]"/>
                 <filter name="gender_filter_m" string="Male" domain="[('gender', '=', 'male')]"/>
                 <filter name="priority_filter" string="Emergency" domain="[('priority', '=', '2')]"/>
+                <filter name="Active" string="active" domain="[('active', '=', 'True')]"/>
+                <filter name="Archive" string="archive" domain="[('active', '!=', 'True')]"/>
 
                 <group expand="0" string="Group By">
                     <filter name="gender_group_by" string="gender" context="{'group_by':'gender'}"/>
                 </group>
-
 
 
                 <searchpanel>
@@ -76,9 +173,17 @@
         </field>
     </record>
 
-    <menuitem id="main_menu" name="Laboratory" sequence="10"/>
+    <menuitem id="main_menu"
+              name="Laboratory"
+              sequence="10"/>
 
-    <menuitem id="menu_patient" name="Patient" parent="main_menu" sequence="10"/>
+    <menuitem id="menu_patient"
+              name="Patient"
+              parent="main_menu"
+              sequence="10"/>
 
-    <menuitem id="menu_patient_details" name="Patient Details" parent="menu_patient" action="action_patient_details"/>
+    <menuitem id="menu_patient_details"
+              name="Patient Details"
+              parent="menu_patient"
+              action="action_patient_details" sequence="10"/>
 </odoo>

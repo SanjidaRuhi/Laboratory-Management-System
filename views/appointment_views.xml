@@ -19,6 +19,7 @@
                 <field name="id"/>
                 <field name="appointment_date"/>
                 <field name="appointment_time"/>
+
             </tree>
         </field>
     </record>
