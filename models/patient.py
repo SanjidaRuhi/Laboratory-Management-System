@@ -9,6 +9,8 @@ class Patient(models.Model):
     name = fields.Char(string="Name", required=True)
     age = fields.Integer(string="Age", required=True)
     id = fields.Integer(string="ID", required=True)
+    color = fields.Integer(string="color picker")
+    color_two = fields.Char(string="color")
     gender = fields.Selection([
         ('male', 'Male'),
         ('female', 'Female'),
@@ -21,6 +23,7 @@ class Patient(models.Model):
 
     ])
     #doctor_id = fields.Many2one('res.user', string='Doctor')
+    doctor = fields.Many2many('doctor.details', string='Doctor')
     status = fields.Selection([
         ('appointed', 'Appointed'),
         ('checkup', 'Checkup'),
@@ -37,7 +40,7 @@ class Patient(models.Model):
     contact = fields.Char(string="Contact", required=True, default='01xxxxxxxxx')
     address = fields.Text(string="Address", required=True)
     active = fields.Boolean(string="Active", default=True)
-
+    image = fields.Image(string="Profile Picture")
 
     def object_button(self):
         print("object Button Clicked")

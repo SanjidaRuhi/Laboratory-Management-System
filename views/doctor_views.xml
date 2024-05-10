@@ -41,6 +41,7 @@
                         <field name="certification"/>
                         <field name="experience"/>
                         <field name="consultation_fee"/>
+                        <field name="color" widget="color_picker"/>
                     </group>
                 </sheet>
             </form>

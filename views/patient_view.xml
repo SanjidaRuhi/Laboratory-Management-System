@@ -22,6 +22,8 @@
                 <field name="name"/>
                 <field name="age" optional="show"/>
                 <field name="gender" optional="hide"/>
+                <field name="color" widget="color_picker"/>
+                <field name="color_two" widget="color"/>
                <!-- <field name="activity_ids" widget="list_activity"/>-->
                 <field name="status"
                        decoration-success="status in ('appointed', 'checkup', 'admitted', 'released')"
@@ -32,6 +34,8 @@
                        optional="show"
                 />
                 <!--<field name="doctor_id" widget="many2one_avatar_user"/>-->
+                <field name="active" widget="boolean_toggle"/>
+
 
             </tree>
         </field>
@@ -44,12 +48,12 @@
     <field name="arch" type="xml">
         <form string="Patient Details" delete = '0' create = '1' edit = '1'>
             <sheet>
+                <field name="image" widget="image" nolabel="1" class="oe_right oe_avatar"/>
                 <div>
                     <h3>
                         <field name="priority" widget="priority"/>
                     </h3>
                 </div>
-
                 <group>
                     <group>
                         <field name="name"/>
@@ -74,7 +78,7 @@
                         <field name="email"/>
                         <field name="contact"/>
                         <field name="address"/>
-                        <field name="active"/>
+                        <field name="active" widget="boolean_toggle"/>
                         <button name="%(lab.action_patient_details)d"
                             type="action"
                             string="Action Button"
@@ -86,6 +90,14 @@
                      then dot and then the action name of record
                      when the action button will be clicked, it will search for that action
                      if we click the action button it will redireactb to action details menu-->
+                        <field name="color" widget="color_picker"/>
+                        <field name="color_two" widget="color"/>
+                        <field name="doctor"
+                               widget="many2many_tags"
+                        options="{'color_field':'color'}"
+                        />
+
+
                     </group>
                 </group>
             </sheet>

@@ -42,6 +42,8 @@ class Doctor(models.Model):
 
     experience = fields.Integer(string="Experience Year")
     consultation_fee = fields.Float(string="Consultation Fee")
+    color = fields.Integer(string="color picker")
+
 
 
 
