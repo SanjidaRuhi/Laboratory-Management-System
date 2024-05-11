@@ -22,6 +22,7 @@
 
     'data': [
         'security/ir.model.access.csv',
+        'wizard/appointment_cancel_view.xml',
         'views/patient_view.xml',
         'views/appointment_views.xml',
         'views/doctor_views.xml',
